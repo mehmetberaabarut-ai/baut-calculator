@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="آلة حاسبة احترافية من BARUT GROUP">
+    <title>BARUT Calculator</title>
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkJBUlVUIENhbGN1bGF0b3IiLAogICJzaG9ydF9uYW1lIjogIkJBUlVUIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwMDAwMDAiLAogICJ0aGVtZV9jb2xvciI6ICIjZGMyNjI2IiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzZGMyNjI2Jy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1MCUyNScgZm9udC1zaXplPScyMDAnIGZpbGw9J3doaXRlJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkeT0nLjNlbScgZm9udC1mYW1pbHk9J0FyaWFsJyBmb250LXdlaWdodD0nYm9sZCclM0VCJTNDL3RleHQlM0UlM0Mvc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzZGMyNjI2Jy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1MCUyNScgZm9udC1zaXplPScyMDAnIGZpbGw9J3doaXRlJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkeT0nLjNlbScgZm9udC1mYW1pbHk9J0FyaWFsJyBmb250LXdlaWdodD0nYm9sZCclM0VCJTNDL3RleHQlM0UlM0Mvc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dc2626'/%3E%3Ctext x='50%25' y='50%25' font-size='50' fill='white' text-anchor='middle' dy='.3em' font-family='Arial' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23dc2626'/%3E%3Ctext x='50%25' y='50%25' font-size='50' fill='white' text-anchor='middle' dy='.3em' font-family='Arial' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #000;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .container {
+            background: #18181b;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 28rem;
+            border: 1px solid rgba(220, 38, 38, 0.5);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .logo-text {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+        }
+        .history-btn {
+            background: #27272a;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .history-btn:hover {
+            background: #3f3f46;
+        }
+        .history-btn.active {
+            background: #dc2626;
+        }
+        .mode-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .mode-btn {
+            flex: 1;
+            padding: 0.625rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        .mode-btn.active {
+            background: #dc2626;
+            color: white;
+        }
+        .mode-btn:not(.active) {
+            background: #27272a;
+            color: #71717a;
+        }
+        .display {
+            background: #27272a;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            min-height: 100px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            border: 1px solid #3f3f46;
+        }
+        .display-content {
+            text-align: right;
+            width: 100%;
+            overflow-wrap: break-word;
+        }
+        .display-operation {
+            font-size: 0.875rem;
+            color: #ef4444;
+            margin-bottom: 0.25rem;
+        }
+        .display-memory {
+            font-size: 0.75rem;
+            color: #71717a;
+            margin-bottom: 0.25rem;
+        }
+        .display-main {
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+        .button {
+            height: 3.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            touch-action: manipulation;
+        }
+        .button:active {
+            transform: scale(0.95);
+        }
+        .button.num {
+            background: #27272a;
+            color: white;
+        }
+        .button.num:hover {
+            background: #3f3f46;
+        }
+        .button.op {
+            background: #dc2626;
+            color: white;
+        }
+        .button.op:hover {
+            background: #b91c1c;
+        }
+        .button.func {
+            background: #3f3f46;
+            color: white;
+        }
+        .button.func:hover {
+            background: #52525b;
+        }
+        .button.special {
+            background: #7f1d1d;
+            color: white;
+            font-size: 0.875rem;
+        }
+        .button.special:hover {
+            background: #991b1b;
+        }
+        .button.span-2 {
+            grid-column: span 2;
+        }
+        .button.delete-btn {
+            background: #991b1b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .button.delete-btn:hover {
+            background: #7f1d1d;
+        }
+        .history-panel {
+            background: #27272a;
+            border-radius: 1rem;
+            padding: 1rem;
+            max-height: 24rem;
+            overflow-y: auto;
+        }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .history-title {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .clear-history {
+            background: none;
+            border: none;
+            color: #71717a;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        .clear-history:hover {
+            color: #ef4444;
+        }
+        .history-empty {
+            color: #71717a;
+            text-align: center;
+            padding: 2rem;
+        }
+        .history-item {
+            background: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .history-date {
+            color: #71717a;
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+        .history-calc {
+            color: white;
+            font-size: 0.875rem;
+        }
+        .install-banner {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .install-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .install-btn {
+            background: white;
+            color: #dc2626;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="installBanner" class="install-banner hidden">
+            <span class="install-text">📱 ثبّت التطبيق على جهازك</span>
+            <button class="install-btn" id="installBtn">تثبيت</button>
+        </div>
+
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <span class="logo-text">BARUT GROUP</span>
+            </div>
+            <button class="history-btn" id="historyToggle">
+                🕐
+            </button>
+        </div>
+
+        <div class="mode-toggle">
+            <button class="mode-btn active" id="normalMode">عادي</button>
+            <button class="mode-btn" id="proMode">احترافي</button>
+        </div>
+
+        <div id="historyPanel" class="history-panel hidden">
+            <div class="history-header">
+                <h3 class="history-title">السجل</h3>
+                <button class="clear-history" id="clearHistory">مسح الكل</button>
+            </div>
+            <div id="historyList"></div>
+        </div>
+
+        <div id="calculator">
+            <div class="display">
+                <div class="display-content">
+                    <div class="display-operation" id="operation"></div>
+                    <div class="display-memory" id="memoryDisplay"></div>
+                    <div class="display-main" id="display">0</div>
+                </div>
+            </div>
+
+            <div class="buttons" id="buttons"></div>
+        </div>
+    </div>
+
+    <script>
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.classList.remove('hidden');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBanner.classList.add('hidden');
+            }
+        });
+
+        // Calculator Logic
+        let display = document.getElementById('display');
+        let operationDisplay = document.getElementById('operation');
+        let memoryDisplay = document.getElementById('memoryDisplay');
+        let currentValue = '0';
+        let previousValue = null;
+        let operation = null;
+        let newNumber = true;
+        let isProfessional = false;
+        let memory = 0;
+        let history = [];
+
+        // Load history
+        try {
+            const saved = localStorage.getItem('barutCalcHistory');
+            if (saved) history = JSON.parse(saved);
+        } catch (e) {}
+
+        function updateDisplay() {
+            display.textContent = currentValue;
+            operationDisplay.textContent = operation && previousValue !== null ? `${previousValue} ${operation}` : '';
+            memoryDisplay.textContent = memory !== 0 ? `الذاكرة: ${memory}` : '';
+        }
+
+        function saveToHistory(calc, result) {
+            const now = new Date();
+            const item = {
+                calculation: calc,
+                result: result,
+                date: now.toLocaleDateString('ar'),
+                time: now.toLocaleTimeString('ar', { hour: '2-digit', minute: '2-digit' })
+            };
+            history = [item, ...history].slice(0, 50);
+            localStorage.setItem('barutCalcHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            if (history.length === 0) {
+                list.innerHTML = '<div class="history-empty">لا يوجد سجل حسابات</div>';
+            } else {
+                list.innerHTML = history.map(item => `
+                    <div class="history-item">
+                        <div class="history-date">${item.date} - ${item.time}</div>
+                        <div class="history-calc">${item.calculation} = ${item.result}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function handleNumber(num) {
+            if (newNumber) {
+                currentValue = num;
+                newNumber = false;
+            } else {
+                currentValue = currentValue === '0' ? num : currentValue + num;
+            }
+            updateDisplay();
+        }
+
+        function handleOperation(op) {
+            const current = parseFloat(currentValue);
+            if (previousValue === null) {
+                previousValue = current;
+            } else if (operation) {
+                const result = calculate(previousValue, current, operation);
+                currentValue = String(result);
+                previousValue = result;
+            }
+            operation = op;
+            newNumber = true;
+            updateDisplay();
+        }
+
+        function calculate(prev, current, op) {
+            let result;
+            switch (op) {
+                case '+': result = prev + current; break;
+                case '-': result = prev - current; break;
+                case '×': result = prev * current; break;
+                case '÷': result = current !== 0 ? prev / current : 'خطأ'; break;
+                case '^': result = Math.pow(prev, current); break;
+                default: result = current;
+            }
+            return typeof result === 'number' ? Number(result.toFixed(10)) : result;
+        }
+
+        function handleEquals() {
+            if (operation && previousValue !== null) {
+                const current = parseFloat(currentValue);
+                const result = calculate(previousValue, current, operation);
+                const calc = `${previousValue} ${operation} ${current}`;
+                saveToHistory(calc, result);
+                currentValue = String(result);
+                previousValue = null;
+                operation = null;
+                newNumber = true;
+                updateDisplay();
+            }
+        }
+
+        function handleClear() {
+            currentValue = '0';
+            previousValue = null;
+            operation = null;
+            newNumber = true;
+            updateDisplay();
+        }
+
+        function renderButtons() {
+            const buttonsDiv = document.getElementById('buttons');
+            
+            if (isProfessional) {
+                buttonsDiv.innerHTML = `
+                    <button class="button special" onclick="handleScientific('sin')">sin</button>
+                    <button class="button special" onclick="handleScientific('cos')">cos</button>
+                    <button class="button special" onclick="handleScientific('tan')">tan</button>
+                    <button class="button special" onclick="handleScientific('log')">log</button>
+                    
+                    <button class="button special" onclick="handleScientific('sqrt')">√</button>
+                    <button class="button special" onclick="handleScientific('square')">x²</button>
+                    <button class="button special" onclick="handleOperation('^')">xʸ</button>
+                    <button class="button op" onclick="handleOperation('÷')">÷</button>
+                    
+                    <button class="button func" onclick="handleMemory('MC')">MC</button>
+                    <button class="button func" onclick="handleMemory('MR')">MR</button>
+                    <button class="button func" onclick="handleMemory('M+')">M+</button>
+                    <button class="button func" onclick="handleMemory('M-')">M-</button>
+                    
+                    <button class="button num" onclick="handleNumber('7')">7</button>
+                    <button class="button num" onclick="handleNumber('8')">8</button>
+                    <button class="button num" onclick="handleNumber('9')">9</button>
+                    <button class="button op" onclick="handleOperation('×')">×</button>
+                    
+                    <button class="button num" onclick="handleNumber('4')">4</button>
+                    <button class="button num" onclick="handleNumber('5')">5</button>
+                    <button class="button num" onclick="handleNumber('6')">6</button>
+                    <button class="button op" onclick="handleOperation('-')">-</button>
+                    
+                    <button class="button num" onclick="handleNumber('1')">1</button>
+                    <button class="button num" onclick="handleNumber('2')">2</button>
+                    <button class="button num" onclick="handleNumber('3')">3</button>
+                    <button class="button op" onclick="handleOperation('+')">+</button>
+                    
+                    <button class="button num" onclick="handlePlusMinus()">±</button>
+                    <button class="button num" onclick="handleNumber('0')">0</button>
+                    <button class="button num" onclick="handleDecimal()">.</button>
+                    <button class="button op" onclick="handleEquals()">=</button>
+                    
+                    <button class="button func" onclick="handleClear()">C</button>
+                    <button class="button delete-btn" onclick="handleBackspace()">🗑️ مسح</button>
+                `;
+            } else {
+                buttonsDiv.innerHTML = `
+                    <button class="button func" onclick="handleClear()">C</button>
+                    <button class="button func" onclick="handlePlusMinus()">±</button>
+                    <button class="button func" onclick="handlePercent()">%</button>
+                    <button class="button op" onclick="handleOperation('÷')">÷</button>
+                    
+                    <button class="button num" onclick="handleNumber('7')">7</button>
+                    <button class="button num" onclick="handleNumber('8')">8</button>
+                    <button class="button num" onclick="handleNumber('9')">9</button>
+                    <button class="button op" onclick="handleOperation('×')">×</button>
+                    
+                    <button class="button num" onclick="handleNumber('4')">4</button>
+                    <button class="button num" onclick="handleNumber('5')">5</button>
+                    <button class="button num" onclick="handleNumber('6')">6</button>
+                    <button class="button op" onclick="handleOperation('-')">-</button>
+                    
+                    <button class="button num" onclick="handleNumber('1')">1</button>
+                    <button class="button num" onclick="handleNumber('2')">2</button>
+                    <button class="button num" onclick="handleNumber('3')">3</button>
+                    <button class="button op" onclick="handleOperation('+')">+</button>
+                    
+                    <button class="button num span-2" onclick="handleNumber('0')">0</button>
+                    <button class="button num" onclick="handleDecimal()">.</button>
+                    <button class="button op" onclick="handleEquals()">=</button>
+                    
+                    <button class="button delete-btn span-2" onclick="handleBackspace()">🗑️ مسح</button>
+                `;
+            }
+        }
+
+        function handleDecimal() {
+            if (newNumber) {
+                currentValue = '0.';
+                newNumber = false;
+            } else if (!currentValue.includes('.')) {
+                currentValue += '.';
+            }
+            updateDisplay();
+        }
+
+        function handleBackspace() {
+            if (currentValue.length > 1) {
+                currentValue = currentValue.slice(0, -1);
+            } else {
+                currentValue = '0';
+                newNumber = true;
+            }
+            updateDisplay();
+        }
+
+        function handlePercent() {
+            currentValue = String(parseFloat(currentValue) / 100);
+            updateDisplay();
+        }
+
+        function handlePlusMinus() {
+            currentValue = String(parseFloat(currentValue) * -1);
+            updateDisplay();
+        }
+
+        function handleScientific(func) {
+            const num = parseFloat(currentValue);
+            let result;
+            switch (func) {
+                case 'sin': result = Math.sin(num * Math.PI / 180); break;
+                case 'cos': result = Math.cos(num * Math.PI / 180); break;
+                case 'tan': result = Math.tan(num * Math.PI / 180); break;
+                case 'log': result = Math.log10(num); break;
+                case 'sqrt': result = Math.sqrt(num); break;
+                case 'square': result = num * num; break;
+            }
+            saveToHistory(`${func}(${num})`, result);
+            currentValue = String(result);
+            newNumber = true;
+            updateDisplay();
+        }
+
+        function handleMemory(cmd) {
+            const num = parseFloat(currentValue);
+            switch (cmd) {
+                case 'MC': memory = 0; break;
+                case 'MR': currentValue = String(memory); newNumber = true; break;
+                case 'M+': memory += num; newNumber = true; break;
+                case 'M-': memory -= num; newNumber = true; break;
+            }
+            updateDisplay();
+        }
+
+        // Mode toggle
+        document.getElementById('normalMode').addEventListener('click', () => {
+            isProfessional = false;
+            document.getElementById('normalMode').classList.add('active');
+            document.getElementById('proMode').classList.remove('active');
+            renderButtons();
+        });
+
+        document.getElementById('proMode').addEventListener('click', () => {
+            isProfessional = true;
+            document.getElementById('proMode').classList.add('active');
+            document.getElementById('normalMode').classList.remove('active');
+            renderButtons();
+        });
+
+        // History toggle
+        document.getElementById('historyToggle').addEventListener('click', () => {
+            const panel = document.getElementById('historyPanel');
+            const calc = document.getElementById('calculator');
+            const btn = document.getElementById('historyToggle');
+            
+            panel.classList.toggle('hidden');
+            calc.classList.toggle('hidden');
+            btn.classList.toggle('active');
+            
+            if (!panel.classList.contains('hidden')) {
+                renderHistory();
+            }
+        });
+
+        document.getElementById('clearHistory').addEventListener('click', () => {
+            history = [];
+            localStorage.removeItem('barutCalcHistory');
+            renderHistory();
+        });
+
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                self.addEventListener('install', (e) => {
+                    e.waitUntil(
+                        caches.open('barut-calc-v1').then((cache) => {
+                            return cache.addAll(['/']);
+                        })
+                    );
+                });
+                
+                self.addEventListener('fetch', (e) => {
+                    e.respondWith(
+                        caches.match(e.request).then((response) => {
+                            return response || fetch(e.request);
+                        })
+                    );
+                });
+            `;
+            
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            
+            navigator.serviceWorker.register(swUrl);
+        }
+
+        // Initialize
+        renderButtons();
+        updateDisplay();
+    </script>
+</body>
+</html>
